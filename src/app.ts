@@ -25,8 +25,13 @@ class App {
    * @description used to set up express application config. Set up new middlewares here
    */
   private config(): void {
+    //   support application/json post data
     this.app.use(bodyParser.json());
+
+    // support application/x-www-form-urlencoded post data
     this.app.use(bodyParser.urlencoded({ extended: false }));
+
+    // set indentation in  JSON responses
     this.app.set("json spaces", 2);
   }
 }
