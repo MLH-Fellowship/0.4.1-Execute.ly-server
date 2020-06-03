@@ -1,10 +1,9 @@
 import express, { Request, Response } from "express";
-import multer from "multer";
 
-import { uploadToCloudinary } from "../utils/uploadToCloudinary";
-import { getOutputFromCode } from "../utils/getOutputFromCode";
-import { detectHandwritingOCR } from "../utils/detectHandwritingOCR";
-
+import uploadToCloudinary from "./utils/uploadToCloudinary";
+import getOutputFromCode from "./utils/getOutputFromCode";
+import detectHandwritingOCR from "./utils/detectHandwritingOCR";
+import { JdoodleStruct } from "./types";
 /**
  * This class is used to declare routes for express application
  */
@@ -20,7 +19,7 @@ export class Routes {
     /**
      * Description. Image -> GCloud vision for OCR
      *              Image -> Cloudinary uplaod
-     * 
+     *
      * @return      {object}      { OCRText, ImageURL }
      */
     app.post("/getText", upload.single("file"), async (req, res) => {
@@ -31,10 +30,10 @@ export class Routes {
 
         const [text, imageData] = await Promise.all([
           textPromise,
-          imagePromise
+          imagePromise,
         ]);
 
-        return res.json({ text, imageUrl: imageData.url });
+        return res.json({ imageUrl: imageData.url, text });
       } catch (error) {
         console.error("error", error);
         return res.status(500).json({ message: "Something went wrong." });
@@ -44,12 +43,12 @@ export class Routes {
     /**
      * Description.    Runs the user-code provided asynchronously
      *                 Uses JDoodle API endpoint to exceute the given code
-     * 
+     *
      * @return        {string}      STDout for the executed code
      */
     app.post("/getOutput", async (req, res) => {
       try {
-        const program = {
+        const program: JdoodleStruct = {
           clientId: process.env.JDOODLE_CLIENT_ID,
           clientSecret: process.env.JDOODLE_CLIENT_SECRET,
           language: req.body.lang_code,
