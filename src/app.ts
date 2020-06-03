@@ -1,6 +1,7 @@
 import * as bodyParser from "body-parser";
 import express from "express";
 import { Routes } from "./routes";
+import multer from "multer";
 
 /**
  * @class
@@ -9,6 +10,7 @@ import { Routes } from "./routes";
 class App {
   public app: express.Application;
   public routePrv: Routes = new Routes();
+  public upload = multer();
 
   /**
    * @constructor
