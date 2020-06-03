@@ -1,3 +1,6 @@
+/**
+ * This file generates a server instance
+ */
 import dotenv from "dotenv";
 
 dotenv.config();
