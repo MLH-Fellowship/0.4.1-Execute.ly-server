@@ -1,5 +1,6 @@
 import * as bodyParser from "body-parser";
 import express from "express";
+import cors from "cors";
 import { Routes } from "./routes";
 
 /**
@@ -33,6 +34,9 @@ class App {
 
     // set indentation in  JSON responses
     this.app.set("json spaces", 2);
+
+    // integrate CORS
+    this.app.use(cors());
   }
 }
 
