@@ -6,6 +6,7 @@
   "author": "REACTIVE SEA-SON",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.6",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.6",
     "@types/jest": "^25.2.3",
@@ -53,8 +54,8 @@
   "dependencies": {
     "@google-cloud/vision": "^1.11.0",
     "body-parser": "^1.19.0",
-    "cloudinary": "^1.21.0",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "cors": "^2.8.5"
   }
 }
