@@ -32,7 +32,7 @@
   },
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp ocr-test.json dist/ocr-test.json",
     "lint": "tsc --noEmit && eslint {src,__tests__}/**/*.{js,ts,tsx} --quiet --fix",
     "prestart": "npm run build",
     "start": "node dist/src/index.js",
