@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 
-import uploadToCloudinary from "./utils/uploadToCloudinary";
 import getOutputFromCode from "./utils/getOutputFromCode";
 import detectHandwritingOCR from "./utils/detectHandwritingOCR";
 import { JdoodleStruct } from "./types";
@@ -24,16 +23,8 @@ export class Routes {
      */
     app.post("/getText", upload.single("file"), async (req, res) => {
       try {
-        const textPromise = detectHandwritingOCR(req.file.buffer);
-
-        const imagePromise = uploadToCloudinary(req.file.buffer);
-
-        const [text, imageData] = await Promise.all([
-          textPromise,
-          imagePromise,
-        ]);
-
-        return res.json({ imageUrl: imageData.url, text });
+        const text = await detectHandwritingOCR(req.file.buffer);
+        return res.json({ text });
       } catch (error) {
         console.error("error", error);
         return res.status(500).json({ message: "Something went wrong." });
