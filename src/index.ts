@@ -3,10 +3,9 @@
  */
 import dotenv from "dotenv";
 import path from "path";
-
 import app from "./app";
-
 dotenv.config();
+
 const PORT = process.env.SERVER_PORT || 3069;
 
 process.env.GOOGLE_APPLICATION_CREDENTIALS = path.join(
