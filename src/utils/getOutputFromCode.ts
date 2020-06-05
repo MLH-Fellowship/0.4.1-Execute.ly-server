@@ -1,15 +1,13 @@
-import fetch from "node-fetch";
+import axios from "axios";
 import { codeExecutionProgram } from "./interfaces";
 
-function getOutputFromCode(program: codeExecutionProgram): any {
-  return new Promise((resolve, reject) => {
-    fetch("https://api.jdoodle.com/execute", {
-      body: JSON.stringify(program),
-      method: "POST",
-    })
-      .then((resp: any) => resolve(resp.body))
+export default function getOutputFromCode(
+  program: codeExecutionProgram
+): Promise<any> {
+  return new Promise(async (resolve, reject) => {
+    axios
+      .post("https://api.jdoodle.com/execute", program)
+      .then((output) => resolve(output.data))
       .catch((err) => reject(err));
   });
 }
-
-export default getOutputFromCode;

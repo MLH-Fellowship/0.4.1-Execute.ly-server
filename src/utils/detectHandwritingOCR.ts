@@ -16,11 +16,11 @@ function detectHandwritingOCR(fileBuffer: any): any {
 
     client
       .documentTextDetection(request)
-      .then((results) => {
+      .then((results: any) => {
         const { fullTextAnnotation } = results[0] as OCRApiResponse;
         resolve(fullTextAnnotation.text);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.error(`Error : ${err.message}`);
         reject(err);
       });

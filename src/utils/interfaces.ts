@@ -23,7 +23,3 @@ export interface codeExecutionProgram {
   clientId: string;
   clientSecret: string;
 }
-
-export interface RequestCarryingFile extends Request {
-  file?: any;
-}

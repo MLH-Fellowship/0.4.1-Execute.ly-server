@@ -1,35 +1,33 @@
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import detectHandwritingOCR from "./utils/detectHandwritingOCR";
 import getOutputFromCode from "./utils/getOutputFromCode";
-import { RequestCarryingFile } from "./utils/interfaces";
 
 /**
  * This class is used to declare routes for express application
  */
 export class Routes {
-  public routes(app: any): void {
+  public routes(app: express.Application, upload: any): void {
     /**
      * register routes here
      */
-    app.route("/").get(async (req: Request, res: Response) => {
+    app.get("/", async (req: Request, res: Response) => {
       res.json({
         name: "executely",
       });
     });
 
-    app.route("/api/getText").post(async (req: Request, res: Response) => {
+    app.post("/getText", upload.single("file"), async (req, res) => {
       try {
-        const { file } = req as RequestCarryingFile;
-        const ocrResponse = await detectHandwritingOCR(file);
+        const ocrResponse = await detectHandwritingOCR(req.file.buffer);
 
-        return res.json({ ocrResponse });
+        return res.json({ text: ocrResponse });
       } catch (error) {
         console.error("error", error);
         return res.status(500).json({ message: "Internal Server Error" });
       }
     });
 
-    app.route("/api/getOutput").post(async (req: Request, res: Response) => {
+    app.post("/getOutput", async (req, res) => {
       try {
         const program = {
           clientId: process.env.JDOODLE_CLIENT_ID,
