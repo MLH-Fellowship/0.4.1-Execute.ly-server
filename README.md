@@ -1,4 +1,6 @@
-# Express Server with Typescript & Jest
+# Execute.ly Server
+
+![](https://media.giphy.com/media/gdkFelq0TLwoInOkjp/source.gif)
 
 ## Getting Started
 
