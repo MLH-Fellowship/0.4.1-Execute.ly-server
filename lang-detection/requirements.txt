@@ -19,4 +19,4 @@ tensorboard==1.6.0
 tensorflow==1.15.4
 termcolor==1.1.0
 Werkzeug==0.16.0
-Flask-Cors==3.0.8
+Flask-Cors==3.0.9
