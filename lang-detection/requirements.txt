@@ -7,7 +7,7 @@ gast==0.3.2
 grpcio==1.24.3
 guesslang==0.9.3
 gunicorn==19.9.0
-html5lib==0.9999999
+html5lib==0.999999999
 itsdangerous==1.1.0
 Jinja2==2.10.3
 Markdown==3.1.1
